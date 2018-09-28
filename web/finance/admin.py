@@ -14,7 +14,7 @@ class OutcomeAdmin(admin.ModelAdmin):
 
 class ReimbursementAdmin(admin.ModelAdmin):
     list_display = ('outcome_reference', 'reimbursement_date', 'reimbursement_source', 'reimbursement')
-    search_fields = ('outcome_description', )
+    search_fields = ('reimbursement_source', 'outcome_reference')
     list_filter = (('reimbursement_date', DateRangeFilter), )
 
 admin.site.register(Income, IncomeAdmin)
