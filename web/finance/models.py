@@ -3,8 +3,16 @@ from datetime import date
 
 class Income(models.Model):
     income_date = models.DateField(default= date.today)
-    description = models.CharField(max_length = 100)
-    income = models.DecimalField(max_digits= 10, decimal_places= 3)
+    income_description = models.CharField(max_length = 256)
+    income = models.DecimalField(max_digits= 10, decimal_places= 2)
 
     def __str__(self):
-        return self.description
+        return self.income_description
+
+class Outcome(models.Model):
+    outcome_date = models.DateField(default= date.today)
+    outcome_description = models.CharField(max_length = 256)
+    outcome = models.DecimalField(max_digits= 10, decimal_places= 2)
+
+    def __str__(self):
+        return self.outcome_description
