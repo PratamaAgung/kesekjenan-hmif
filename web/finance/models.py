@@ -16,3 +16,12 @@ class Outcome(models.Model):
 
     def __str__(self):
         return self.outcome_description
+
+class Reimbursement(models.Model):
+    outcome_reference = models.ForeignKey(Outcome, on_delete= models.CASCADE)
+    reimbursement_date = models.DateField(default= date.today)
+    reimbursement_source = models.CharField(max_length = 256)
+    reimbursement = models.DecimalField(max_digits= 10, decimal_places= 2)
+
+    def __str__(self):
+        return str(self.reimbursement_date) + self.reimbursement_source
