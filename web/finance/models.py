@@ -24,4 +24,4 @@ class Reimbursement(models.Model):
     reimbursement = models.DecimalField(max_digits= 10, decimal_places= 2)
 
     def __str__(self):
-        return str(self.reimbursement_date) + self.reimbursement_source
+        return str(self.reimbursement_date) + "-" + self.reimbursement_source + "-" + str(self.outcome_reference)
