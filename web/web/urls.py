@@ -20,7 +20,7 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api-finance/', include('finance.core.urls', namespace= 'finance')),
+    path('api-finance/', include('finance.urls', namespace= 'finance')),
 ]
 
 admin.site.site_header = "Kesekjenan-HMIF Admin"
