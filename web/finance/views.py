@@ -6,10 +6,10 @@ from .serializers import IncomeSerializer, OutcomeSerializer, ReimbursementSeria
 
 class IncomeViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = IncomeSerializer
-    
-    list_for_each = self.request.query_params.get('each')
-    from_date = self.request.query_params.get('from')
-    until_date = self.request.query_params.get('until')
+
+    list_for_each = request.query_params.get('each')
+    from_date = request.query_params.get('from')
+    until_date = request.query_params.get('until')
 
     if (list_for_each is None):
         list_for_each = 'day'
