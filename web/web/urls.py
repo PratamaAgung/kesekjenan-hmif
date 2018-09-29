@@ -17,10 +17,11 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls import url, include
 from django.urls import path
+from web import finance
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api-finance/', include('web.finance.urls', namespace= 'finance')),
+    path('api-finance/', finance.urls),
 ]
 
 admin.site.site_header = "Kesekjenan-HMIF Admin"
