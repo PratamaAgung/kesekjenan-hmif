@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
 INSTALLED_APPS = [
     'rangefilter',
+    'rest_framework',
     'finance.apps.FinanceConfig',
     'django.contrib.admin',
     'django.contrib.auth',
