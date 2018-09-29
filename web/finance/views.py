@@ -22,6 +22,8 @@ class IncomeViewSet(viewsets.ReadOnlyModelViewSet):
 
         return queryset
 
+    queryset = self.get_queryset()
+
 class OutcomeViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Outcome.objects.all()
     serializer_class = OutcomeSerializer
