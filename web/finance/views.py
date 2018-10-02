@@ -13,7 +13,7 @@ class IncomeViewSet(generics.ListAPIView):
         list_for_each = self.request.query_params.get('each')
         from_date = self.request.query_params.get('from')
         until_date = self.request.query_params.get('until')
-        queryset = Income.objects.all()
+        queryset = Income.objects
 
         if (list_for_each is None):
             list_for_each = 'day'
