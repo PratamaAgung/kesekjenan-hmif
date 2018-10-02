@@ -3,8 +3,8 @@ from .models import Income, Outcome, Reimbursement
 
 class IncomeSerializer(serializers.ModelSerializer):
     month = serializers.DateField()
-    total_income = serializers.DecimalField()
-    
+    total_income = serializers.DecimalField(max_digits= 10, decimal_places= 2)
+
     class Meta:
         model = Income
         fields = '__all__'
