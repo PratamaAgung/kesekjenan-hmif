@@ -19,9 +19,9 @@ class IncomeViewSet(generics.ListAPIView):
             list_for_each = 'day'
 
         if (from_date is not None and until_date is not None):
-            queryset = queryset.filter(income_date_lte= until_date, income_date_gte= from_date).annotate(month = TruncMonth('income_date')).values('month').annotate(total_income = Count('income'))
+            queryset = queryset.filter(income_date_lte= until_date, income_date_gte= from_date).annotate(month = TruncMonth('income_date')).annotate(total_income = Count('income'))
         else :
-            queryset = queryset.annotate(month = TruncMonth('income_date')).values('month').annotate(total_income = Count('income'))
+            queryset = queryset.annotate(month = TruncMonth('income_date')).annotate(total_income = Count('income'))
 
         return queryset
 

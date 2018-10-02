@@ -4,7 +4,8 @@ from .models import Income, Outcome, Reimbursement
 class IncomeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Income
-        fields = ('income_date', 'income')
+        fields = '__all__'
+        
 class OutcomeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Outcome
