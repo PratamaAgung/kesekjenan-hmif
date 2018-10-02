@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.db.models.functions inport TruncMonth
+from django.db.models.functions import TruncMonth
 
 from rest_framework import generics, viewsets
 from .models import Income, Outcome, Reimbursement
