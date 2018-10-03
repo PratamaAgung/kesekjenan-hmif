@@ -4,10 +4,11 @@ from django.db.models.functions import TruncMonth
 
 from rest_framework import generics, viewsets
 from .models import Income, Outcome, Reimbursement
-from .serializers import IncomeSerializer, OutcomeSerializer, ReimbursementSerializer
+from .serializers import IncomeSummarySerializer, OutcomeSerializer, ReimbursementSerializer
 
-class IncomeViewSet(generics.ListAPIView):
-    serializer_class = IncomeSerializer
+class IncomeSummaryViewSet(generics.ListAPIView):
+    serializer_class = IncomeSummarySerializer
+    queryset = Income.objects.all()
 
     def get_queryset(self):
         list_for_each = self.request.query_params.get('each')
@@ -21,7 +22,7 @@ class IncomeViewSet(generics.ListAPIView):
         if (from_date is not None and until_date is not None):
             queryset = queryset.filter(income_date_lte= until_date, income_date_gte= from_date).annotate(month = TruncMonth('income_date')).annotate(total_income = Count('income'))
         else :
-            queryset = queryset.annotate(month = TruncMonth('income_date')).annotate(total_income = Count('income'))
+            queryset = queryset.annotate(time = TruncMonth('income_date')).values('month').annotate(total_income = Count('income')).order_by('month')
 
         return queryset
 

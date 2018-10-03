@@ -1,13 +1,13 @@
 from rest_framework import serializers
 from .models import Income, Outcome, Reimbursement
 
-class IncomeSerializer(serializers.ModelSerializer):
-    month = serializers.DateField()
+class IncomeSummarySerializer(serializers.ModelSerializer):
+    time = serializers.DateField()
     total_income = serializers.DecimalField(max_digits= 10, decimal_places= 2)
 
     class Meta:
         model = Income
-        fields = '__all__'
+        fields = ('time', 'total_income')
 
 class OutcomeSerializer(serializers.ModelSerializer):
     class Meta:
