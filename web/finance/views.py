@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.db.models import Count
-from django.db.models.functions import TruncMonth
+from django.db.models import Sum
+from django.db.models.functions import TruncMonth, TruncDay
 
 from rest_framework import generics, viewsets
 from .models import Income, Outcome, Reimbursement
@@ -19,10 +19,15 @@ class IncomeSummaryViewSet(generics.ListAPIView):
         if (list_for_each is None):
             list_for_each = 'day'
 
+        if (list_for_each == 'day'):
+            trunc = TruncDay('income_date')
+        else:
+            trunc = TruncMonth('income_date')
+
         if (from_date is not None and until_date is not None):
-            queryset = queryset.filter(income_date_lte= until_date, income_date_gte= from_date).annotate(month = TruncMonth('income_date')).annotate(total_income = Count('income'))
+            queryset = queryset.filter(income_date__range=[from_date, until_date]).annotate(time = trunc).values('time').annotate(total_income = Sum('income')).order_by('time')
         else :
-            queryset = queryset.annotate(time = TruncMonth('income_date')).values('time').annotate(total_income = Count('income')).order_by('time')
+            queryset = queryset.annotate(time = trunc).values('time').annotate(total_income = Sum('income')).order_by('time')
 
         return queryset
 
