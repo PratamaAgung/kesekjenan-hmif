@@ -11,19 +11,19 @@ class IncomeSummarySerializer(serializers.ModelSerializer):
 
 class OutcomeSummarySerializer(serializers.ModelSerializer):
     time = serializers.DateField()
-    total_income = serializers.DecimalField(max_digits= 10, decimal_places= 2)
+    total_outcome = serializers.DecimalField(max_digits= 10, decimal_places= 2)
 
     class Meta:
         model = Outcome
-        fields = ('time', 'total_income')
+        fields = ('time', 'total_outcome')
 
 class ReimbursementSummarySerializer(serializers.ModelSerializer):
     time = serializers.DateField()
-    total_income = serializers.DecimalField(max_digits= 10, decimal_places= 2)
+    total_reimbursement = serializers.DecimalField(max_digits= 10, decimal_places= 2)
 
     class Meta:
         model = Reimbursement
-        fields = ('time', 'total_income')
+        fields = ('time', 'total_reimbursement')
 
 class IncomeSerializer(serializers.ModelSerializer):
     class Meta:

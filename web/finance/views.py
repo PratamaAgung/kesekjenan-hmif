@@ -46,14 +46,14 @@ class OutcomeSummaryViewSet(generics.ListAPIView):
             list_for_each = 'day'
 
         if (list_for_each == 'day'):
-            trunc = TruncDay('income_date')
+            trunc = TruncDay('outcome_date')
         else:
-            trunc = TruncMonth('income_date')
+            trunc = TruncMonth('outcome_date')
 
         if (from_date is not None and until_date is not None):
-            queryset = queryset.filter(income_date__range=[from_date, until_date]).annotate(time = trunc).values('time').annotate(total_income = Sum('income')).order_by('time')
+            queryset = queryset.filter(outcome_date__range=[from_date, until_date]).annotate(time = trunc).values('time').annotate(total_outcome = Sum('outcome')).order_by('time')
         else :
-            queryset = queryset.annotate(time = trunc).values('time').annotate(total_income = Sum('income')).order_by('time')
+            queryset = queryset.annotate(time = trunc).values('time').annotate(total_outcome = Sum('outcome')).order_by('time')
 
         return queryset
 
@@ -71,14 +71,14 @@ class ReimbursementSummaryViewSet(generics.ListAPIView):
             list_for_each = 'day'
 
         if (list_for_each == 'day'):
-            trunc = TruncDay('income_date')
+            trunc = TruncDay('reimbursement_date')
         else:
-            trunc = TruncMonth('income_date')
+            trunc = TruncMonth('reimbursement_date')
 
         if (from_date is not None and until_date is not None):
-            queryset = queryset.filter(income_date__range=[from_date, until_date]).annotate(time = trunc).values('time').annotate(total_income = Sum('income')).order_by('time')
+            queryset = queryset.filter(reimbursement_date__range=[from_date, until_date]).annotate(time = trunc).values('time').annotate(total_reimbursement = Sum('reimbursement')).order_by('time')
         else :
-            queryset = queryset.annotate(time = trunc).values('time').annotate(total_income = Sum('income')).order_by('time')
+            queryset = queryset.annotate(time = trunc).values('time').annotate(total_reimbursement = Sum('reimbursement')).order_by('time')
 
         return queryset
 
