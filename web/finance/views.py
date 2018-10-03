@@ -1,10 +1,20 @@
 from django.shortcuts import render
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
+
 from django.db.models import Sum
 from django.db.models.functions import TruncMonth, TruncDay
 
 from rest_framework import generics, viewsets
 from .models import Income, Outcome, Reimbursement
 from .serializers import IncomeSummarySerializer, OutcomeSerializer, ReimbursementSerializer
+
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'income-summary': reverse('income-summary-list', request=request, format=format),
+    })
 
 class IncomeSummaryViewSet(generics.ListAPIView):
     serializer_class = IncomeSummarySerializer
